@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup and Login Form</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background-color: #fff;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      animation: slide-in 0.3s ease 1;
+    }
+
+    .container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container input[type="email"],
+    .container input[type="password"] {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      width: 100%;
+      display: flex;
+    }
+
+    .container button {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 3px;
+      background-color: #1e7fb0;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .success-message {
+      color: green;
+    }
+
+    .error-message {
+      color: red;
+    }
+
+    .container p {
+      margin-bottom: 15px;
+    }
+
+    /* Animation Keyframes */
+    @keyframes slide-in {
+      from {
+        transform: translateY(-50%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      .container {
+        width: 100%;
+      }
+    }
+
+
+    @media screen and (min-width: 1200px) {
+      .container {
+        width: 100%;
+      }
+    }
+  </style>
+  <script>
+    function toggleForm() {
+      var signupForm = document.getElementById("signupForm");
+      var loginForm = document.getElementById("loginForm");
+      var successMessage = document.getElementById("successMessage");
+      var errorMessage = document.getElementById("errorMessage");
+
+      if (signupForm.style.display === "none") {
+        signupForm.style.display = "block";
+        loginForm.style.display = "none";
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+      } else {
+        signupForm.style.display = "none";
+        loginForm.style.display = "block";
+      }
+    }
+
+    function submitForm() {
+      var signupEmail = document.getElementById("signupEmail").value;
+      var signupPassword = document.getElementById("signupPassword").value;
+
+      var loginEmail = document.getElementById("loginEmail").value;
+      var loginPassword = document.getElementById("loginPassword").value;
+
+      var successMessage = document.getElementById("successMessage");
+      var errorMessage = document.getElementById("errorMessage");
+
+      if (signupEmail === loginEmail && signupPassword === loginPassword) {
+        successMessage.style.display = "block";
+        errorMessage.style.display = "none";
+      } else {
+        successMessage.style.display = "none";
+        errorMessage.style.display = " block";
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <form id="signupForm">
+      <h1>Signup</h1>
+      <input type="email" name="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" name="password" id="signupPassword" placeholder="Password" required><br>
+      <button type="button" onclick="toggleForm()">Create Account</button>
+      <p>Already have an account? <a href="#" onclick="toggleForm()">Log in here</a></p>
+    </form>
+
+    <form id="loginForm" style="display: none;">
+      <h1>Login</h1>
+      <input type="email" name="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" name="password" id="loginPassword" placeholder="Password" required><br>
+      <button type="button" onclick="submitForm()">Login</button>
+      <p>Don't have an account? <a href="#" onclick="toggleForm()">Signup here</a></p>
+    </form>
+
+    <p id="successMessage" class="success-message" style="display: none;">Congratulations! You have successfully logged
+      in.</p>
+    <p id="errorMessage" class="error-message" style="display: none;">Invalid email or password.</p>
+  </div>
+</body>
+
+</html>
